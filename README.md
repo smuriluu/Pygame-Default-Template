@@ -38,6 +38,7 @@ Pygame-Default-Template/
 │ └── screen.py # Screen management and resizing
 │ └── settings.py # Loading and saving settings
 │ └── sprites.py # Sprite loading
+│ └── text.py # Text management
 └── main.py # Main script to start the game
 ```
 
