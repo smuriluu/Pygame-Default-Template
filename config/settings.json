@@ -7,8 +7,9 @@
         "show_fps": true
     },
     "language": {
-        "language_set": "pt-BR",
+        "language_set": "en-US",
         "en-US": {
+            "title": "Pygame Default Template",
             "score": "Score",
             "start": "Start",
             "options": "Options",
@@ -18,6 +19,7 @@
             "fullscreen": "Fullscreen"
         },
         "pt-BR": {
+            "title": "Modelo Padrão do Pygame",
             "score": "Pontuação",
             "start": "Iniciar",
             "options": "Opções",
@@ -28,7 +30,7 @@
         }
     },
     "audio": {
-        "main_volume": 0
+        "main_volume": 100
     },
     "game_data": {
         "times_played": 0,
