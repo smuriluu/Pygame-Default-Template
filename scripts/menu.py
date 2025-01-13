@@ -1,6 +1,6 @@
 import pygame
 from scripts.text import Label
-from scripts.button import Button
+from scripts.button import Button, Slider
 
 class Menu():
     def __init__(self, game):
@@ -16,13 +16,14 @@ class Menu():
         # Create text and button objects.
         self.text = Label(self.menu_screen)
         self.button1 = Button(self.menu_screen, pos=(150, 150))
-        self.button2 = Button(self.menu_screen, pos=(150, 300), borderRadius=20, textColor=(0,0,255), textHoverColor=(255,0,0))
-        self.button3 = Button(self.menu_screen, pos=(150, 450), shadowSize=(6,6))
-        self.button4 = Button(self.menu_screen, pos=(500, 600), border=2, transparency=-1, textHoverColor=(128,128,128))
-        self.button5 = Button(self.menu_screen, pos=(500, 150), border=2, borderRadius=20)
-        self.button6 = Button(self.menu_screen, pos=(500, 300), borderRadius=20, shadowSize=(6,6), border=2)
-        self.button7 = Button(self.menu_screen, pos=(500, 450), borderRadius=20, shadowSize=(6,6), textColor=(255,255,255), textHoverColor=(255,255,255), buttonColor=(20,20,20), buttonHoverColor=(0,0,0), shadowColor=(100,100,100))
-        self.button8 = Button(self.menu_screen, pos=(1200, 30), size=(150, 50), textFontSize=50, borderRadius=20, shadowSize=(6,6), border=2)
+        self.button2 = Button(self.menu_screen, pos=(150, 300), border_radius=20, text_color=(0,0,255), text_hover_color=(255,0,0))
+        self.button3 = Button(self.menu_screen, pos=(150, 450), shadow_size=(6,6))
+        self.button4 = Button(self.menu_screen, pos=(500, 600), border=2, transparency=-1, text_hover_color=(128,128,128))
+        self.button5 = Button(self.menu_screen, pos=(500, 150), border=2, border_radius=20)
+        self.button6 = Button(self.menu_screen, pos=(500, 300), border_radius=20, shadow_size=(6,6), border=2)
+        self.button7 = Button(self.menu_screen, pos=(500, 450), border_radius=20, shadow_size=(6,6), text_color=(255,255,255), text_hover_color=(255,255,255), button_color=(20,20,20), button_hover_color=(0,0,0), shadow_color=(100,100,100))
+        self.button8 = Button(self.menu_screen, pos=(1200, 30), size=(150, 50), text_font_size=50, border_radius=20, shadow_size=(6,6), border=2)
+        self.slider = Slider(self.menu_screen, pos=(850, 175), slider_value=self.settings.audio_settings['main_volume'])
 
     def run(self):
         self.events()
@@ -63,6 +64,8 @@ class Menu():
         self.button7.draw(f'VSync - {status}')
         self.text.write(self.settings.game_texts['title'], (int(self.screen.WIDTH/2), 0), center_w=True)
         self.button8.draw(self.settings.game_texts['exit'])
+        self.slider.draw_slider()
+        self.text.write(self.settings.audio_settings['main_volume'], (850, 100), center_w=True)
 
     def inputs(self):
         # Handle button clicks.
@@ -86,3 +89,5 @@ class Menu():
             self.screen.resize_screen(self.settings.video_settings['width'], self.settings.video_settings['height'], self.settings.video_settings['vsync'])
         if self.button8.click(self.screen.aspect_ratio):
             self.game.running = False
+        if self.slider.click_slider(self.screen.aspect_ratio):
+            self.settings.set_settings('audio', 'main_volume', self.slider.slider_value)
