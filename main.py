@@ -4,31 +4,49 @@ from scripts.settings import Settings
 from scripts.menu import Menu
 
 class Main():
+    '''
+    Manages the main loop and game states for the application.
+    '''
     def __init__(self):
+        '''
+        Initializes the game by setting up required components like settings, screen, and menu.
+        '''
+        # Initialize Pygame.
         pygame.init()
+        # Create an instance of the Settings class to manage configuration.
         self.settings = Settings()
+        # Create an instance of the Screen class, passing the settings to configure the display.
         self.screen = Screen(self.settings)
+        # A flag to control the main game loop.
         self.running = True
-        # Set initial game state to 'menu'.
+        # Set the initial game state to 'menu'.
         self.game_state = 'menu'
-        # Create an instance of the Menu class, passing the current Game instance as an argument.
+        # Create an instance of the Menu class, passing the current Main instance for access to shared resources.
         self.menu = Menu(self)
     
     def run(self):
+        '''
+        Runs the main game loop. 
+        Continuously updates the game state and renders the screen until the game is exited.
+        '''
         while self.running:
-            # Calculate the time elapsed since the last frame (delta time).
+            # Calculate the time elapsed since the last frame (delta time) for consistent animations and logic.
             self.screen.delta_time()
-            # Handle user input and update the game state.
+            # Handle user inputs and manage transitions between game states.
             self.controller()
-            # Update the screen.
+            # Refresh the screen to reflect changes.
             self.screen.screen_update()
+        # Exit the game and clean up resources.
         pygame.quit()
-    
-    # Define a method to handle user input and update the game state.
+
     def controller(self):
-        # If the current game state is 'menu', run the menu.
+        '''
+        Manages the game state and directs control to the appropriate handler for the current state.
+        '''
+        # If the game is currently in the 'menu' state, execute the menu logic.
         if self.game_state == 'menu':
             self.menu.run()
 
+# Ensure the script runs only if executed directly, not when imported.
 if __name__ == '__main__':
     Main().run()
