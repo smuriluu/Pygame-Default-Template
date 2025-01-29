@@ -1,7 +1,7 @@
 import pygame
 from scripts.screen import Screen
 from scripts.settings import Settings
-from scripts.menu import Menu
+from canvas.menu import Menu
 
 class Main():
     '''

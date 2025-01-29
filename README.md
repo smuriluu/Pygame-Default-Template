@@ -34,12 +34,12 @@ Pygame-Default-Template/
 ├── images/ # Directory to store sprites and other graphics
 │
 ├── scripts/
-│ └── menu.py # Main menu implementation
 │ └── screen.py # Screen management and resizing
 │ └── settings.py # Loading and saving settings
 │ └── sprites.py # Sprite loading
-│ └── text.py # Text management
-│ └── button.py # Button management
+│ └── gui.py # Gui management
+│
+├── canvas/ # Directory to store scripts for game screens (menu, options, gameplay, map)
 └── main.py # Main script to start the game
 ```
 

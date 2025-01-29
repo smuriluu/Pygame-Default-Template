@@ -1,6 +1,5 @@
 import pygame
-from scripts.text import Label
-from scripts.button import Button, Slider
+from scripts.gui import Label, Button, Slider, TextBox
 
 class Menu():
     '''
@@ -37,6 +36,7 @@ class Menu():
         self.button7 = Button(self.menu_screen, pos=(500, 450), border_radius=20, shadow_size=(6,6), text_color=(255,255,255), text_hover_color=(255,255,255), button_color=(20,20,20), button_hover_color=(0,0,0), shadow_color=(100,100,100))
         self.button8 = Button(self.menu_screen, pos=(1200, 30), size=(150, 50), text_font_size=50, border_radius=20, shadow_size=(6,6), border=2)
         self.slider = Slider(self.menu_screen, pos=(850, 175), slider_value=self.settings.audio_settings['main_volume'])
+        self.text_box = TextBox(self.menu_screen, (500, 680), size=(500, 50), border=2, transparency=-1, border_radius=20)
 
     def run(self):
         '''
@@ -65,8 +65,10 @@ class Menu():
             # Quit the game if the window is closed.
             if event.type == pygame.QUIT:
                 self.game.running = False
+            self.text_box.event(event)
         
     def draw(self):
+        self.text_box.draw()
         '''
         Draw the menu on the screen.
         '''
@@ -148,3 +150,6 @@ class Menu():
         # Handle slider interaction.
         if self.slider.click_slider(self.screen.aspect_ratio):
             self.settings.set_settings('audio', 'main_volume', self.slider.slider_value)
+        
+        # Handle text_box interaction.
+        self.text_box.click(self.screen.aspect_ratio)
