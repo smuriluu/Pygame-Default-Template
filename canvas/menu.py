@@ -27,16 +27,16 @@ class Menu():
 
         # Create text and button elements for the menu.
         self.text = Label(self.menu_screen)
-        self.button1 = Button(self.menu_screen, pos=(150, 150))
-        self.button2 = Button(self.menu_screen, pos=(150, 300), border_radius=20, text_color=(0,0,255), text_hover_color=(255,0,0))
-        self.button3 = Button(self.menu_screen, pos=(150, 450), shadow_size=(6,6))
-        self.button4 = Button(self.menu_screen, pos=(500, 600), border=2, transparency=-1, text_hover_color=(128,128,128))
-        self.button5 = Button(self.menu_screen, pos=(500, 150), border=2, border_radius=20)
-        self.button6 = Button(self.menu_screen, pos=(500, 300), border_radius=20, shadow_size=(6,6), border=2)
-        self.button7 = Button(self.menu_screen, pos=(500, 450), border_radius=20, shadow_size=(6,6), text_color=(255,255,255), text_hover_color=(255,255,255), button_color=(20,20,20), button_hover_color=(0,0,0), shadow_color=(100,100,100))
-        self.button8 = Button(self.menu_screen, pos=(1200, 30), size=(150, 50), text_font_size=50, border_radius=20, shadow_size=(6,6), border=2)
-        self.slider = Slider(self.menu_screen, pos=(850, 175), slider_value=self.settings.audio_settings['main_volume'])
-        self.text_box = TextBox(self.menu_screen, (500, 680), size=(500, 50), border=2, transparency=-1, border_radius=20)
+        self.button1 = Button(self.menu_screen, self.screen.aspect_ratio, (150, 150))
+        self.button2 = Button(self.menu_screen, self.screen.aspect_ratio, (150, 300), border_radius=20, text_color=(0,0,255), text_hover_color=(255,0,0))
+        self.button3 = Button(self.menu_screen, self.screen.aspect_ratio, (150, 450), shadow_size=(6,6))
+        self.button4 = Button(self.menu_screen, self.screen.aspect_ratio, (500, 600), border=2, transparency=-1, text_hover_color=(128,128,128))
+        self.button5 = Button(self.menu_screen, self.screen.aspect_ratio, (500, 150), border=2, border_radius=20)
+        self.button6 = Button(self.menu_screen, self.screen.aspect_ratio, (500, 300), border_radius=20, shadow_size=(6,6), border=2)
+        self.button7 = Button(self.menu_screen, self.screen.aspect_ratio, (500, 450), border_radius=20, shadow_size=(6,6), text_color=(255,255,255), text_hover_color=(255,255,255), button_color=(20,20,20), button_hover_color=(0,0,0), shadow_color=(100,100,100))
+        self.button8 = Button(self.menu_screen, self.screen.aspect_ratio, (1200, 30), size=(150, 50), text_font_size=50, border_radius=20, shadow_size=(6,6), border=2)
+        self.slider = Slider(self.menu_screen, self.screen.aspect_ratio, (850, 175), slider_value=self.settings.audio_settings['main_volume'])
+        self.text_box = TextBox(self.menu_screen, self.screen.aspect_ratio, (500, 680), size=(500, 50), border=2, transparency=-1, border_radius=20)
 
     def run(self):
         '''
@@ -118,38 +118,38 @@ class Menu():
         Handle inputs, such as button clicks and slider interactions.
         '''
         # Handle resolution buttons.
-        if self.button1.click(self.screen.aspect_ratio):
+        if self.button1.click():
             self.screen.resize_screen(1600, 900, self.settings.video_settings['vsync'])
             self.new_screen()
-        if self.button2.click(self.screen.aspect_ratio):
+        if self.button2.click():
             self.screen.resize_screen(1280, 720, self.settings.video_settings['vsync'])
             self.new_screen()
-        if self.button3.click(self.screen.aspect_ratio):
+        if self.button3.click():
             self.screen.resize_screen(720, 480, self.settings.video_settings['vsync'])
             self.new_screen()
         
         # Handle FPS toggle button.
-        if self.button4.click(self.screen.aspect_ratio):
+        if self.button4.click():
             self.settings.set_settings('video', 'show_fps', False) if self.settings.video_settings['show_fps'] else self.settings.set_settings('video', 'show_fps', True)
         
         # Handle language buttons.
-        if self.button5.click(self.screen.aspect_ratio):
+        if self.button5.click():
             self.settings.set_settings('language', 'language_set', 'en-US')
-        if self.button6.click(self.screen.aspect_ratio):
+        if self.button6.click():
             self.settings.set_settings('language', 'language_set', 'pt-BR')
         
         # Handle VSync toggle button.
-        if self.button7.click(self.screen.aspect_ratio):
+        if self.button7.click():
             self.settings.set_settings('video', 'vsync', 0) if self.settings.video_settings['vsync'] == 1 else self.settings.set_settings('video', 'vsync', 1)
             self.screen.resize_screen(self.settings.video_settings['width'], self.settings.video_settings['height'], self.settings.video_settings['vsync'])
         
         # Handle exit button.
-        if self.button8.click(self.screen.aspect_ratio):
+        if self.button8.click():
             self.game.running = False
         
         # Handle slider interaction.
-        if self.slider.click_slider(self.screen.aspect_ratio):
+        if self.slider.click_slider():
             self.settings.set_settings('audio', 'main_volume', self.slider.slider_value)
         
         # Handle text_box interaction.
-        self.text_box.click(self.screen.aspect_ratio)
+        self.text_box.click()

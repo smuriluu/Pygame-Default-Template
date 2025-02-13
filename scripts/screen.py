@@ -56,7 +56,7 @@ class Screen():
         Parameters:
         - screen: The surface to scale.
         '''
-        pygame.transform.scale(screen, self.display_surf.get_size(), self.display_surf)
+        pygame.transform.smoothscale(screen, self.display_surf.get_size(), self.display_surf)
     
     def resize_screen(self, width, height, vsync):
         '''
