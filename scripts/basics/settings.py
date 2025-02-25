@@ -15,7 +15,7 @@ class Settings():
         - Initializes game-specific settings.
         '''
         # Define the base path of the project directory.
-        self.path = os.path.join(os.path.dirname(__file__), '..')
+        self.path = os.path.join(os.path.dirname(__file__), '..', '..')
         # Define the path to the settings.json file located in the 'config' directory.
         self.file_path = os.path.join(self.path, 'config', 'settings.json')
         # Load the settings from the JSON file.

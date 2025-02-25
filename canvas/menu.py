@@ -1,5 +1,5 @@
 import pygame
-from scripts.gui import Label, Button, Slider, TextBox
+from scripts.basics.gui import Label, Button, Slider, TextBox
 
 class Menu():
     '''

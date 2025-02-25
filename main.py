@@ -1,6 +1,6 @@
 import pygame
-from scripts.screen import Screen
-from scripts.settings import Settings
+from scripts.basics.screen import Screen
+from scripts.basics.settings import Settings
 from canvas.menu import Menu
 
 class Main():
