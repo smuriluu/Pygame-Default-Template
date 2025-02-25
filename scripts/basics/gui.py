@@ -21,7 +21,7 @@ class Text():
         self.text_antialias = text_antialias
 
 class Label(Text):
-    def __init__(self, screen, text_color=(0,0,0), text_antialias=True, font=None, font_size=100):
+    def __init__(self, screen, text_color=(0,0,0), text_antialias=True, font=None, font_size=100, border_radius=0, border_color=(0,0,0), border_width=2, border_padding=0):
         '''
         Initializes a Label object, inheriting from Text.
 
@@ -33,6 +33,10 @@ class Label(Text):
         - font_size: Size of the font (default is 100).
         '''
         super().__init__(screen, text_color, text_antialias, font, font_size)
+        self.border_radius = border_radius
+        self.border_color = border_color
+        self.border_width = border_width
+        self.border_padding = border_padding
     
     def write(self, text, pos, center_w=False, center_h=False):
         '''
@@ -49,8 +53,10 @@ class Label(Text):
         # Calculate offsets for centering the text, if enabled.
         center_width = text_surf.get_width() / 2 if center_w else 0
         center_height = text_surf.get_height() / 2 if center_h else 0
+        text_rect = text_surf.get_frect(topleft=(pos[0] - center_width, pos[1] - center_height))
         # Blit the text surface onto the screen at the adjusted position.
         self.screen.blit(text_surf, (pos[0] - center_width, pos[1] - center_height))
+        pygame.draw.rect(self.screen, self.border_color, text_rect.inflate(self.border_padding, -self.border_padding).move(0, -self.border_padding/1.5), self.border_width, self.border_radius)
 
 class TextButton(Text):
     def __init__(self, screen, text_color, text_antialias, font, font_size):

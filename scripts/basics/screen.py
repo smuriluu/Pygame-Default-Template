@@ -23,6 +23,7 @@ class Screen():
         self.HEIGHT = 720
         # Set up the screen using settings from the Settings instance.
         self.set_screen(self.settings.video_settings['width'], self.settings.video_settings['height'], self.settings.video_settings['vsync'])
+        pygame.mixer.init()
         # Clock to manage frame timing.
         self.clock = pygame.time.Clock()
 
@@ -77,6 +78,7 @@ class Screen():
         self.settings.set_settings('video', 'vsync', vsync)
         # Restart the display to apply the new settings.
         pygame.display.quit()
+        pygame.mixer.quit()
         self.set_screen(width, height, vsync)
     
     def delta_time(self):
