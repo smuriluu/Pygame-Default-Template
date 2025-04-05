@@ -21,7 +21,7 @@ class Text():
         self.text_antialias = text_antialias
 
 class Label(Text):
-    def __init__(self, screen, text_color=(0,0,0), text_antialias=True, font=None, font_size=100, border_radius=0, border_color=(0,0,0), border_width=2, border_padding=0):
+    def __init__(self, screen, text_color=(0,0,0), text_antialias=True, font=None, font_size=100, border_radius=0, border_color=(0,0,0), border_width=-1, border_padding=0):
         '''
         Initializes a Label object, inheriting from Text.
 
@@ -361,8 +361,8 @@ class TextBox(TextBoxContent):
             pygame.draw.rect(self.screen, self.tb_color, self.tb_rect, border_radius=self.border_radius, width=self.transparency)
             pygame.draw.rect(self.screen, self.border_color, self.tb_rect, border_radius=self.border_radius, width=self.border)
             # Adjust text offset if it overflows the text box width
-            if self.text_surf.get_width() > self.tb_rect.width:
-                self.offset = self.text_surf.get_width() - self.tb_rect.width
+            if self.text_surf.get_width() > self.tb_rect.width - self.text_padding * 2:
+                self.offset = self.text_surf.get_width() - (self.tb_rect.width - self.text_padding * 2)
             else:
                 self.offset = 0
         
@@ -379,9 +379,9 @@ class TextBox(TextBoxContent):
             if self.pressed:
                 self.blink_time = pygame.time.get_ticks() - self.start_blink
                 if self.blink_time <= 1000:
-                    self.bar_text_label.write('|', (self.tb_x+self.text_surf.width+self.text_padding/2, self.tb_y + self.tb_rect.height/2), center_h=True)
+                    self.bar_text_label.write('|', ((self.tb_x+self.text_surf.width+self.text_padding/2) - self.offset, self.tb_y + self.tb_rect.height/2), center_h=True)
                 elif (self.blink_time//1000) % 2 == 0:
-                    self.bar_text_label.write('|', (self.tb_x+self.text_surf.width+self.text_padding/2, self.tb_y + self.tb_rect.height/2), center_h=True)
+                    self.bar_text_label.write('|', ((self.tb_x+self.text_surf.width+self.text_padding/2) - self.offset, self.tb_y + self.tb_rect.height/2), center_h=True)
             else:
                 self.start_blink = pygame.time.get_ticks()
     

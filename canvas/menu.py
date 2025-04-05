@@ -23,20 +23,20 @@ class Menu():
         Creates a new surface for the menu and initializes menu components.
         '''
         # Create a menu surface with the same size as the game screen.
-        self.menu_screen = pygame.Surface((self.screen.WIDTH, self.screen.HEIGHT))
+        self.window_surface = pygame.Surface((self.screen.WIDTH, self.screen.HEIGHT))
 
         # Create text and button elements for the menu.
-        self.text = Label(self.menu_screen)
-        self.button1 = Button(self.menu_screen, self.screen.aspect_ratio, (150, 150))
-        self.button2 = Button(self.menu_screen, self.screen.aspect_ratio, (150, 300), border_radius=20, text_color=(0,0,255), text_hover_color=(255,0,0))
-        self.button3 = Button(self.menu_screen, self.screen.aspect_ratio, (150, 450), shadow_size=(6,6))
-        self.button4 = Button(self.menu_screen, self.screen.aspect_ratio, (500, 600), border=2, transparency=-1, text_hover_color=(128,128,128))
-        self.button5 = Button(self.menu_screen, self.screen.aspect_ratio, (500, 150), border=2, border_radius=20)
-        self.button6 = Button(self.menu_screen, self.screen.aspect_ratio, (500, 300), border_radius=20, shadow_size=(6,6), border=2)
-        self.button7 = Button(self.menu_screen, self.screen.aspect_ratio, (500, 450), border_radius=20, shadow_size=(6,6), text_color=(255,255,255), text_hover_color=(255,255,255), button_color=(20,20,20), button_hover_color=(0,0,0), shadow_color=(100,100,100))
-        self.button8 = Button(self.menu_screen, self.screen.aspect_ratio, (1200, 30), size=(150, 50), text_font_size=50, border_radius=20, shadow_size=(6,6), border=2)
-        self.slider = Slider(self.menu_screen, self.screen.aspect_ratio, (850, 175), slider_value=self.settings.audio_settings['main_volume'])
-        self.text_box = TextBox(self.menu_screen, self.screen.aspect_ratio, (500, 680), size=(500, 50), border=2, transparency=-1, border_radius=20)
+        self.text = Label(self.window_surface)
+        self.button1 = Button(self.window_surface, self.screen.aspect_ratio, (150, 150))
+        self.button2 = Button(self.window_surface, self.screen.aspect_ratio, (150, 300), border_radius=20, text_color=(0,0,255), text_hover_color=(255,0,0))
+        self.button3 = Button(self.window_surface, self.screen.aspect_ratio, (150, 450), shadow_size=(6,6))
+        self.button4 = Button(self.window_surface, self.screen.aspect_ratio, (500, 600), border=2, transparency=-1, text_hover_color=(128,128,128))
+        self.button5 = Button(self.window_surface, self.screen.aspect_ratio, (500, 150), border=2, border_radius=20)
+        self.button6 = Button(self.window_surface, self.screen.aspect_ratio, (500, 300), border_radius=20, shadow_size=(6,6), border=2)
+        self.button7 = Button(self.window_surface, self.screen.aspect_ratio, (500, 450), border_radius=20, shadow_size=(6,6), text_color=(255,255,255), text_hover_color=(255,255,255), button_color=(20,20,20), button_hover_color=(0,0,0), shadow_color=(100,100,100))
+        self.button8 = Button(self.window_surface, self.screen.aspect_ratio, (1200, 30), size=(150, 50), text_font_size=50, border_radius=20, shadow_size=(6,6), border=2)
+        self.slider = Slider(self.window_surface, self.screen.aspect_ratio, (850, 175), slider_value=self.settings.audio_settings['main_volume'])
+        self.text_box = TextBox(self.window_surface, self.screen.aspect_ratio, (500, 680), size=(500, 50), border=2, transparency=-1, border_radius=20)
 
     def run(self):
         '''
@@ -73,9 +73,9 @@ class Menu():
         Draw the menu on the screen.
         '''
         # Scale the menu surface to fit the display surface.
-        self.screen.scale_screen(self.menu_screen)
+        self.screen.scale_screen(self.window_surface)
         # Fill the menu background with white.
-        self.menu_screen.fill((255,255,255))
+        self.window_surface.fill((255,255,255))
 
         # Draw buttons with corresponding text.
         self.button1.draw('1600x900')
