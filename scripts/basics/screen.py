@@ -42,13 +42,13 @@ class Screen():
         - height_ratio: The ratio between the current height and the default height;
         - aspect_ratio: A tuple containing the width and height scaling ratios.
         '''
-        self.display_surf = pygame.display.set_mode((width, height), vsync=vsync)
+        self.display_surf = pygame.display.set_mode((width, height), vsync=vsync, flags=pygame.SCALED)
         # Calculate scaling ratios based on the default dimensions.
         self.width_ratio = width / self.WIDTH
         self.height_ratio = height / self.HEIGHT
         self.aspect_ratio = (self.width_ratio, self.height_ratio)
         # Set the window title.
-        pygame.display.set_caption('Pygame Default Template')
+        pygame.display.set_caption(self.settings.game_texts['title'])
     
     def scale_screen(self, screen):
         '''

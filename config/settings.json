@@ -3,7 +3,7 @@
         "width": 1280,
         "height": 720,
         "fps": 0,
-        "vsync": 0,
+        "vsync": 1,
         "show_fps": true
     },
     "language": {
@@ -30,7 +30,7 @@
         }
     },
     "audio": {
-        "main_volume": 0
+        "main_volume": 99
     },
     "game_data": {
         "times_played": 0,

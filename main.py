@@ -26,7 +26,7 @@ class Main():
     
     def run(self):
         '''
-        Runs the main game loop. 
+        Runs the main game loop.
         Continuously updates the game state and renders the screen until the game is exited.
         '''
         while self.running:
