@@ -1,96 +1,63 @@
 # 🎮 Pygame Default Template
 
-This repository contains a default template for projects developed with Pygame. The goal of this template is to provide a solid and modular base for game development, allowing you to focus on the specific mechanics of the game without needing to redo essential logic, such as screen resizing, game state management, and data persistence.
+## A modular, scalable starting point for building Pygame games.
 
----
-
-## 🚀 Key Features
-
-### 🛠️ Modularity
-- **Flexible Components**: Easily replace or modify individual parts like the menu system, sprite management, and settings control.
-
-### 💾 Data Persistence
-- **Player Preferences**: Automatically save and load settings such as screen resolution, audio volume, language, and player data (e.g., playtime, high scores) in a JSON file.
-
-### 🎮 Game State Management
-- **Smooth Navigation**: A prebuilt structure to handle different game states such as menus, levels, and pauses.
-
-### 🖥️ Screen Resizing
-- **Dynamic Adjustments**: Integrated logic to adjust resolution and aspect ratio based on player preferences.
-
-### 🌍 Multilingual Support
-- **Global Reach**: Easily add new translations to the game by updating the JSON settings file.
+Created for my personal use, this template may also serve as a helpful foundation—especially for beginners—when organizing a Pygame project.
 
 ---
 
 ## 📂 Project Structure
-
 ```plaintext
 Pygame-Default-Template/
+├── canvas/
+│   └── menu.py            # Game states (menu, options, gameplay, etc.)
 │
 ├── config/
-│ └── settings.json # Game settings file (resolution, audio, language, etc.)
-│
-├── images/ # Directory to store sprites and other graphics
+│   └── settings.json      # Persistent settings (audio, video, language, game data, controls)
 │
 ├── scripts/
-│ └── screen.py # Screen management and resizing
-│ └── settings.py # Loading and saving settings
-│ └── sprites.py # Sprite loading
-│ └── gui.py # Gui management
+│   ├── basics/
+│   │   ├── assets.py      # Sprite loading, sprite groups, and animation helpers
+│   │   ├── screen.py      # Window management: resizing, delta time, FPS handling
+│   │   ├── settings.py    # Reading and updating `settings.json`
+│   │   └── gui.py         # GUI components: Label, Button, Slider, TextBox, etc.
+│   │
+│   └── objects/
+│       └── map.py         # `.tmx` map loading (via pytmx) and collision sprites
 │
-├── canvas/ # Directory to store scripts for game screens (menu, options, gameplay, map)
-└── main.py # Main script to start the game
+└── main.py                # Game entry point: main loop and state management
 ```
 
 ---
 
-## ⚙️ Settings
+## ⚙️ Features
 
-Game settings are stored in the config/settings.json file.
-This file allows customization of various options, such as:
+- Game States: Each screen (menu, options, gameplay) is a separate module in canvas/.
 
-- Screen Resolution
-- Language
-- Audio Volume
-- Key Mappings
+- JSON-based Settings: Store and persist video, audio, language, game data, and key mappings in config/settings.json.
 
-Example settings.json file:
+- Dynamic Window Resizing: Change resolution, VSync, and fullscreen at runtime.
 
-```json
-{
-    "video": {
-        "width": 1280,
-        "height": 720,
-        "fps": 0,
-        "vsync": 0,
-        "show_fps": true
-    },
-    "audio": {
-        "main_volume": 0
-    },
-    "game_data": {
-        "times_played": 0,
-        "high_score": 0,
-        "max_enemies_defeated": 0
-    }
-}
-```
+- Reusable GUI Components: Buttons, sliders, text boxes, and basic UI helpers.
+
+- Asset Management: Load static and animated sprites via scripts/basics/assets.py.
+
+- TMX Map Integration: Import tile maps with pytmx and generate sprite layers.
 
 ---
 
-## 🛠️ Requirements
+## 🛠️ Dependencies:
 
-Make sure you have Pygame Community Edition installed.
+Make sure you have Pygame Community Edition and pytmx installed.
 Install it using the following command:
 
 ```bash
-pip install pygame-ce
+pip install pygame-ce pytmx
 ```
 
 ---
 
-## 🖥️ How to Run the Project
+## 🖥️ How to Run
 
 - Clone this repository:
 
@@ -101,12 +68,28 @@ cd pygame-default-template
 
 - Install the required dependencies:
 
-```bash
-pip install pygame-ce
-```
-
-- Run the game:
+- Start the game:
 
 ```bash
-python main.py
+python3 main.py
 ```
+
+---
+
+## 🔧 Customization
+
+- Add a New Screen: Create a script in canvas/ with a run() method, then instantiate it in Main().
+
+- New Assets: Place image files in an images/ folder and use Assets.load_sprite() or Assets.animated_sprites().
+
+- Adjust Settings: Edit config/settings.json, or call Settings.set_settings() at runtime to update and persist values.
+
+---
+
+## 📄 License
+
+Free to use for educational and commercial purposes. Provided without any warranty.
+
+---
+
+This template was created for my personal workflow but may be useful for organizing your Pygame projects.

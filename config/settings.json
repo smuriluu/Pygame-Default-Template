@@ -3,11 +3,11 @@
         "width": 1280,
         "height": 720,
         "fps": 0,
-        "vsync": 1,
+        "vsync": 0,
         "show_fps": true
     },
     "language": {
-        "language_set": "en-US",
+        "language_set": "pt-BR",
         "en-US": {
             "title": "Pygame Default Template",
             "score": "Score",
@@ -30,7 +30,7 @@
         }
     },
     "audio": {
-        "main_volume": 99
+        "main_volume": 100
     },
     "game_data": {
         "times_played": 0,
